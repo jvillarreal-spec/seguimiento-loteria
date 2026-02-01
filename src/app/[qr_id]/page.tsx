@@ -8,7 +8,7 @@ export default function LandingPage({ params }: { params: Promise<{ qr_id: strin
     const merchantName = qr_id === 'demo-comercio' ? "Demo Comercio" : "Punto de Venta";
 
     return (
-        <main style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+        <main className="container" style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
             <div className="header">
                 <div className="logo-placeholder">SL</div>
                 <h1>Bienvenido a {merchantName}</h1>

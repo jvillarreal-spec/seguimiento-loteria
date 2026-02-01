@@ -24,7 +24,7 @@ export default function ConfirmPage({ params }: { params: Promise<{ ticket_id: s
     };
 
     return (
-        <main style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+        <main className="container" style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             <header className="header">
                 <h2>Confirma tus datos</h2>
                 <p style={{ fontSize: '0.875rem', color: 'var(--text-muted)' }}>Verifica que los números coincidan con tu tiquete</p>

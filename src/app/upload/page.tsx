@@ -32,7 +32,7 @@ export default function UploadPage() {
     };
 
     return (
-        <main style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+        <main className="container" style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
             <header className="header">
                 <h2>Captura tu tiquete</h2>
             </header>

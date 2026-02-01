@@ -25,7 +25,7 @@ export default function MisTiquetesPage() {
     }
 
     return (
-        <main style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+        <main className="container" style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             <header className="header" style={{ textAlign: 'left', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <h2>Mis Tiquetes</h2>
                 <Link href="/upload" style={{ color: 'var(--primary)', fontWeight: '600', textDecoration: 'none' }}>+ Nuevo</Link>

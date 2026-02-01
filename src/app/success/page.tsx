@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 export default function SuccessPage() {
     return (
-        <main style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', textAlign: 'center' }}>
+        <main className="container" style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', textAlign: 'center' }}>
             <div style={{ marginBottom: '2rem' }}>
                 <div style={{
                     width: '80px',
