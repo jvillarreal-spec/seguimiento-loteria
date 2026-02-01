@@ -30,18 +30,25 @@ export default function MerchantsPage() {
 
     return (
         <div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
+            <div style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'flex-start',
+                marginBottom: '2rem',
+                flexWrap: 'wrap',
+                gap: '1rem'
+            }}>
                 <div>
-                    <h1 style={{ fontSize: '1.875rem', fontWeight: '700' }}>Gestión de Comercios</h1>
-                    <p style={{ color: 'var(--text-muted)' }}>Administra los puntos de venta y sus códigos QR.</p>
+                    <h1 style={{ fontSize: 'clamp(1.5rem, 4vw, 1.875rem)', fontWeight: '700' }}>Gestión de Comercios</h1>
+                    <p style={{ color: 'var(--text-muted)', fontSize: 'clamp(0.875rem, 2vw, 1rem)' }}>Administra los puntos de venta y sus códigos QR.</p>
                 </div>
-                <button className="btn btn-primary" style={{ width: 'auto' }} onClick={() => setIsModalOpen(true)}>
+                <button className="btn btn-primary" style={{ width: 'auto', whiteSpace: 'nowrap' }} onClick={() => setIsModalOpen(true)}>
                     + Nuevo Comercio
                 </button>
             </div>
 
             <div className="card" style={{ overflowX: 'auto' }}>
-                <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
+                <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', minWidth: '600px' }}>
                     <thead>
                         <tr style={{ borderBottom: '2px solid #f1f5f9', color: 'var(--text-muted)', fontSize: '0.875rem' }}>
                             <th style={{ padding: '1rem' }}>Comercio</th>

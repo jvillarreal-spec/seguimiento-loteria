@@ -10,9 +10,15 @@ export default function AdminDashboard() {
 
     return (
         <div>
-            <h1 style={{ marginBottom: '2rem' }}>Dashboard General</h1>
+            <h1 style={{ marginBottom: '2rem', fontSize: 'clamp(1.5rem, 4vw, 2rem)' }}>Dashboard General</h1>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1.5rem', marginBottom: '3rem' }}>
+            {/* Responsive Stats Grid */}
+            <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+                gap: '1.5rem',
+                marginBottom: '3rem'
+            }}>
                 {stats.map((s, i) => (
                     <div key={i} className="card" style={{ borderLeft: `4px solid ${s.color}` }}>
                         <p style={{ fontSize: '0.875rem', color: 'var(--text-muted)' }}>{s.label}</p>
@@ -24,29 +30,36 @@ export default function AdminDashboard() {
                 ))}
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '1.5rem' }}>
-                <div className="card">
+            {/* Responsive Content Grid */}
+            <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+                gap: '1.5rem'
+            }}>
+                <div className="card" style={{ gridColumn: 'span 1' }}>
                     <h3 style={{ marginBottom: '1rem' }}>Actividad Reciente</h3>
-                    <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-                        <thead>
-                            <tr style={{ textAlign: 'left', borderBottom: '1px solid var(--border)' }}>
-                                <th style={{ padding: '0.75rem 0' }}>Ticket ID</th>
-                                <th>Usuario</th>
-                                <th>Juego</th>
-                                <th>Estado</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {[1, 2, 3, 4, 5].map(i => (
-                                <tr key={i} style={{ borderBottom: '1px solid #f1f5f9' }}>
-                                    <td style={{ padding: '0.75rem 0' }}>#TK-00{i}</td>
-                                    <td>user{i}@example.com</td>
-                                    <td>Baloto</td>
-                                    <td><span style={{ color: 'var(--warning)', fontWeight: '600' }}>Pending</span></td>
+                    <div style={{ overflowX: 'auto' }}>
+                        <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '500px' }}>
+                            <thead>
+                                <tr style={{ textAlign: 'left', borderBottom: '1px solid var(--border)' }}>
+                                    <th style={{ padding: '0.75rem 0' }}>Ticket ID</th>
+                                    <th>Usuario</th>
+                                    <th>Juego</th>
+                                    <th>Estado</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                {[1, 2, 3, 4, 5].map(i => (
+                                    <tr key={i} style={{ borderBottom: '1px solid #f1f5f9' }}>
+                                        <td style={{ padding: '0.75rem 0' }}>#TK-00{i}</td>
+                                        <td style={{ fontSize: '0.875rem' }}>user{i}@example.com</td>
+                                        <td>Baloto</td>
+                                        <td><span style={{ color: 'var(--warning)', fontWeight: '600', fontSize: '0.875rem' }}>Pending</span></td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
 
                 <div className="card">
