@@ -7,13 +7,14 @@ import Link from 'next/link';
 export default function EmailConsentPage() {
     const router = useRouter();
     const [email, setEmail] = useState('');
+    const [phone, setPhone] = useState('');
     const [consent, setConsent] = useState(false);
 
     const handleActivate = () => {
-        if (email && consent) {
+        if (email && phone && consent) {
             router.push('/success');
         } else {
-            alert('Por favor, ingresa tu email y acepta los términos.');
+            alert('Por favor, ingresa tu email, celular y acepta los términos.');
         }
     };
 
@@ -33,6 +34,20 @@ export default function EmailConsentPage() {
                         value={email}
                         onChange={e => setEmail(e.target.value)}
                     />
+                </div>
+
+                <div className="input-group">
+                    <label>Tu Celular</label>
+                    <input
+                        type="tel"
+                        placeholder="3001234567"
+                        value={phone}
+                        onChange={e => setPhone(e.target.value)}
+                        maxLength={10}
+                    />
+                    <small style={{ color: 'var(--text-muted)', fontSize: '0.75rem', marginTop: '0.25rem', display: 'block' }}>
+                        Te enviaremos notificaciones por WhatsApp
+                    </small>
                 </div>
 
                 <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start', margin: '1.5rem 0' }}>
