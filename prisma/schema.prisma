@@ -1,0 +1,132 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum TicketStatus {
+  PENDING
+  WON
+  LOST
+  NEEDS_REVIEW
+}
+
+enum GameType {
+  BALOTO
+  CHANCE
+}
+
+enum ValidationStatus {
+  OK
+  SOSPECHOSO
+  PENDIENTE
+}
+
+enum NotificationType {
+  CONFIRMACION
+  GANADOR
+}
+
+enum NotificationStatus {
+  QUEUED
+  SENT
+  BOUNCED
+  FAILED
+}
+
+model Merchant {
+  id          String   @id @default(cuid())
+  nombre      String
+  responsable String
+  celular     String
+  ciudad      String
+  direccion   String
+  status      String   @default("active")
+  createdAt   DateTime @default(now())
+  qrs         Qr[]
+  tickets     Ticket[]
+
+  @@map("merchants")
+}
+
+model Qr {
+  id         String   @id @default(cuid())
+  merchantId String
+  merchant   Merchant @relation(fields: [merchantId], references: [id])
+  landingUrl String
+  status     String   @default("active")
+  createdAt  DateTime @default(now())
+
+  @@map("qrs")
+}
+
+model User {
+  id                    String         @id @default(cuid())
+  email                 String         @unique
+  ciudad                String?
+  createdAt             DateTime       @default(now())
+  consentTermsAt        DateTime
+  consentDataPolicyAt   DateTime
+  tickets               Ticket[]
+  notifications         Notification[]
+
+  @@map("users")
+}
+
+model Ticket {
+  id              String         @id @default(cuid())
+  merchantId      String
+  merchant        Merchant       @relation(fields: [merchantId], references: [id])
+  userId          String
+  user            User           @relation(fields: [userId], references: [id])
+  juego           GameType
+  varianteChance  String?
+  sorteoFechaHora DateTime
+  numerosApostados Json
+  serial          String?
+  imageUrl        String
+  ocrRaw          String?
+  ocrConfidence   Json?
+  status          TicketStatus   @default(PENDING)
+  fingerprint     String         @unique
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+  notifications   Notification[]
+
+  @@map("tickets")
+}
+
+model Result {
+  id              String           @id @default(cuid())
+  juego           GameType
+  varianteChance  String?
+  sorteoFechaHora DateTime
+  numerosGanadores Json
+  sourceName      String
+  sourceUrl       String
+  fetchedAt       DateTime         @default(now())
+  htmlSnapshotUrl String?
+  hashIntegridad  String
+  validationStatus ValidationStatus @default(PENDIENTE)
+
+  @@map("results")
+}
+
+model Notification {
+  id         String             @id @default(cuid())
+  userId     String
+  user       User               @relation(fields: [userId], references: [id])
+  ticketId   String?
+  ticket     Ticket?            @relation(fields: [ticketId], references: [id])
+  tipo       NotificationType
+  canal      String             @default("email")
+  estado     NotificationStatus @default(QUEUED)
+  sentAt     DateTime?
+  meta       Json?
+  createdAt  DateTime           @default(now())
+
+  @@map("notifications")
+}
