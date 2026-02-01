@@ -1,9 +1,10 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, use } from 'react';
 import { useRouter } from 'next/navigation';
 
-export default function ConfirmPage({ params }: { params: { ticket_id: string } }) {
+export default function ConfirmPage({ params }: { params: Promise<{ ticket_id: string }> }) {
+    const { ticket_id } = use(params);
     const router = useRouter();
     const [formData, setFormData] = useState({
         juego: 'BALOTO',

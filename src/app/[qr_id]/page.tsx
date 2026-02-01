@@ -1,10 +1,11 @@
 'use client';
 
-import React from 'react';
+import { use } from 'react';
 import Link from 'next/link';
 
-export default function LandingPage({ params }: { params: { qr_id: string } }) {
-    // In a real app, we would fetch merchant info based on params.qr_id
+export default function LandingPage({ params }: { params: Promise<{ qr_id: string }> }) {
+    const { qr_id } = use(params);
+    // In a real app, we would fetch merchant info based on qr_id
     const merchantName = "Demo Comercio";
 
     return (
