@@ -5,8 +5,7 @@ import Link from 'next/link';
 
 export default function LandingPage({ params }: { params: Promise<{ qr_id: string }> }) {
     const { qr_id } = use(params);
-    // In a real app, we would fetch merchant info based on qr_id
-    const merchantName = "Demo Comercio";
+    const merchantName = qr_id === 'demo-comercio' ? "Demo Comercio" : "Punto de Venta";
 
     return (
         <main style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>

@@ -13,7 +13,7 @@ export abstract class BaseScraper {
     abstract url: string;
     abstract scrape(): Promise<ScrapeResult[]>;
 
-    generateHash(data: any): string {
+    generateHash(data: Record<string, unknown>): string {
         return Buffer.from(JSON.stringify(data)).toString('base64').slice(0, 32);
     }
 }

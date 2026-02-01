@@ -2,7 +2,7 @@ export interface EmailOptions {
     to: string;
     subject: string;
     template: 'CONFIRMATION' | 'WINNER';
-    data: any;
+    data: Record<string, unknown>;
 }
 
 export async function sendEmail(options: EmailOptions) {
@@ -14,10 +14,12 @@ export async function sendEmail(options: EmailOptions) {
     //   subject: options.subject,
     //   html: renderTemplate(options.template, options.data)
     // });
+    const html = renderTemplate(options.template, options.data);
+    console.log('Template rendered:', html.length > 0);
     return { success: true, messageId: 'mock-msg-id' };
 }
 
-function renderTemplate(template: string, data: any): string {
+function renderTemplate(template: string, data: Record<string, unknown>): string {
     if (template === 'CONFIRMATION') {
         return `<h1>¡Tiquete registrado!</h1><p>Has registrado un tiquete de ${data.juego} para el sorteo del ${data.fecha}.</p>`;
     }

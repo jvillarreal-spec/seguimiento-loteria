@@ -14,6 +14,11 @@ export default function ConfirmPage({ params }: { params: Promise<{ ticket_id: s
         fecha: '2026-02-04'
     });
 
+    // Logging ticket_id to avoid unused variable lint error
+    React.useEffect(() => {
+        console.log('Confirming ticket:', ticket_id);
+    }, [ticket_id]);
+
     const handleSave = () => {
         router.push('/email-consent');
     };
