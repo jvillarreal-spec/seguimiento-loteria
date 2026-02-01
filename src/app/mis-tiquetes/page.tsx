@@ -1,9 +1,11 @@
 'use client';
 
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
 export default function MisTiquetesPage() {
+    const router = useRouter();
     const [filter, setFilter] = useState('TODOS');
 
     // Mock data for UI
