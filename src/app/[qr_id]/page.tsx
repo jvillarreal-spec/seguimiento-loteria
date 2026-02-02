@@ -5,18 +5,18 @@ import Link from 'next/link';
 
 export default function LandingPage({ params }: { params: Promise<{ qr_id: string }> }) {
     const { qr_id } = use(params);
-    const merchantName = qr_id === 'demo-comercio' ? "Demo Comercio" : "Punto de Venta";
+    const merchantName = qr_id === 'demo-comercio' ? "servicio de notificación de Loterías" : "Punto de Venta";
 
     return (
         <main className="container" style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
             <div className="header">
                 <div className="logo-placeholder">SL</div>
-                <h1>Bienvenido a {merchantName}</h1>
+                <h1>Bienvenido al {merchantName}</h1>
             </div>
 
             <div className="card" style={{ textAlign: 'center' }}>
                 <p style={{ marginBottom: '2rem', color: 'var(--text-muted)' }}>
-                    Sube tu tiquete y te avisamos por email si ganaste.
+                    Sube tu tiquete y te avisamos por email y WhatsApp si ganaste.
                 </p>
 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>

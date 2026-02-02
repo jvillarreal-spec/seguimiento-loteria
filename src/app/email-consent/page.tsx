@@ -21,7 +21,7 @@ export default function EmailConsentPage() {
     return (
         <main className="container" style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '1.5rem', justifyContent: 'center' }}>
             <header className="header">
-                <h2>Último paso</h2>
+                <h2>Notificaciones</h2>
                 <p style={{ fontSize: '0.875rem', color: 'var(--text-muted)' }}>Te avisaremos por aquí si ganas</p>
             </header>
 
